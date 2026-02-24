@@ -465,6 +465,12 @@
       border: 1px solid rgba(251, 191, 36, 0.2);
     }
 
+    .product-featured {
+      grid-column: span 2;
+      border-color: rgba(167, 139, 250, 0.2);
+      background: rgba(167, 139, 250, 0.03);
+    }
+
     .product-card h3 {
       font-size: 1.4rem;
       font-weight: 700;
@@ -681,6 +687,10 @@
         grid-template-columns: 1fr;
       }
 
+      .product-featured {
+        grid-column: span 1;
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -832,13 +842,29 @@
       </div>
 
       <div class="product-grid">
+        <div class="product-card product-featured reveal">
+          <div class="product-status status-live">
+            <span class="dot"></span>
+            Live
+          </div>
+          <h3>Sell</h3>
+          <p>Snap a photo of anything you want to sell. AI identifies the item, researches real eBay sold prices, and generates optimized listings for eBay and Facebook Marketplace — ready to post in seconds. Auto-posting included.</p>
+          <div class="product-tech">
+            <span>fastapi</span>
+            <span>openai</span>
+            <span>playwright</span>
+            <span>ebay api</span>
+          </div>
+          <a href="https://sell.applesauce.chat" class="btn btn-primary" style="margin-top: 1.2rem; display: inline-flex;">Try Sell &rarr;</a>
+        </div>
+
         <div class="product-card reveal">
           <div class="product-status status-live">
             <span class="dot"></span>
             Live
           </div>
-          <h3>Applesauce Community</h3>
-          <p>A builders' Discord where we share progress, help each other ship, and keep the momentum going.</p>
+          <h3>Community</h3>
+          <p>A builders' Discord where we share progress, help each other ship, and keep the momentum going. Open to everyone.</p>
           <div class="product-tech">
             <span>discord</span>
             <span>community</span>
@@ -851,8 +877,8 @@
             <span class="dot"></span>
             In Development
           </div>
-          <h3>Project Alpha</h3>
-          <p>Something new is cooking. Details dropping soon — join the community to get early access.</p>
+          <h3>Next Up</h3>
+          <p>More products are in the pipeline. We build in public — join the Discord to see what's cooking and get early access.</p>
           <div class="product-tech">
             <span>coming soon</span>
             <span>stealth</span>
@@ -860,27 +886,16 @@
         </div>
 
         <div class="product-card reveal">
-          <div class="product-status status-soon">
+          <div class="product-status status-live">
             <span class="dot"></span>
-            Coming Soon
+            Live
           </div>
-          <h3>More on the Way</h3>
-          <p>We're always building. New products get announced in the community first.</p>
+          <h3>Open Source</h3>
+          <p>136+ repos on GitHub. From computer vision annotation tools to blockchain IoT systems — if we build it, we share it.</p>
           <div class="product-tech">
-            <span>tba</span>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-status status-dev">
-            <span class="dot"></span>
-            In Development
-          </div>
-          <h3>Open Source Tools</h3>
-          <p>Utilities and libraries we build along the way. If it's useful to us, it's probably useful to you.</p>
-          <div class="product-tech">
-            <span>open-source</span>
-            <span>tools</span>
+            <span>python</span>
+            <span>rust</span>
+            <span>pytorch</span>
             <span>github</span>
           </div>
         </div>
@@ -896,16 +911,13 @@
           <div class="section-label">// about</div>
           <h2 class="section-title">Who's behind this?</h2>
           <p>
-            <strong>Applesauce</strong> is a solo dev studio (for now) focused on building
-            products quickly and getting them in front of real users.
+            <strong>Applesauce</strong> is built by <a href="https://gradstudent.me" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">William Wyatt</a> — PhD economist and AI researcher at Claremont Graduate University, with a background in physics (UCSC) and mathematics.
           </p>
           <p>
-            No VC funding. No 30-slide pitch deck. Just a builder who wakes up
-            and ships code. The goal is simple: <strong>make things people actually want to use.</strong>
+            14 years of Python and C++. Published research on how LLMs reason, decide, and take risks. 136+ open-source repos. Built everything from computer vision tools to market simulation engines.
           </p>
           <p>
-            Everything here is built with modern tools, AI-assisted workflows,
-            and an obsession with moving fast without breaking things (too badly).
+            Now channeling all of that into <strong>shipping products that solve real problems</strong> — fast, AI-native, and built to work on day one.
           </p>
           <div class="about-links">
             <a href="https://github.com/tsangares" class="about-link" title="GitHub">
@@ -927,18 +939,21 @@
             <span class="terminal-dot"></span>
           </div>
           <div class="terminal-body" id="terminal">
-            <div class="terminal-line"><span class="prompt">~</span> <span class="cmd">whoami</span></div>
-            <div class="terminal-line"><span class="output">applesauce — builder, shipper, breaker of things</span></div>
+            <div class="terminal-line"><span class="prompt">wil@arch:~$</span> <span class="cmd">whoami</span></div>
+            <div class="terminal-line"><span class="output">PhD economist / AI researcher / builder</span></div>
             <div class="terminal-line"><br></div>
-            <div class="terminal-line"><span class="prompt">~</span> <span class="cmd">cat mission.txt</span></div>
-            <div class="terminal-line"><span class="output">Build products. Ship fast. Solve real problems.</span></div>
-            <div class="terminal-line"><span class="output">No meetings. No bureaucracy. Just code.</span></div>
+            <div class="terminal-line"><span class="prompt">wil@arch:~$</span> <span class="cmd">ls ./skills/</span></div>
+            <div class="terminal-line"><span class="output">python/  c++/  rust/  pytorch/  llms/  econometrics/</span></div>
             <div class="terminal-line"><br></div>
-            <div class="terminal-line"><span class="prompt">~</span> <span class="cmd">ls ./stack/</span></div>
-            <div class="terminal-line"><span class="output">python/  javascript/  ai/  cloud/  whatever-works/</span></div>
+            <div class="terminal-line"><span class="prompt">wil@arch:~$</span> <span class="cmd">cat research.txt</span></div>
+            <div class="terminal-line"><span class="output">LLM behavioral alignment, AI risk-taking,</span></div>
+            <div class="terminal-line"><span class="output">game theory, causal inference — 10 publications</span></div>
             <div class="terminal-line"><br></div>
-            <div class="terminal-line"><span class="prompt">~</span> <span class="cmd">echo $STATUS</span></div>
-            <div class="terminal-line"><span class="success">&#10003; shipping</span></div>
+            <div class="terminal-line"><span class="prompt">wil@arch:~$</span> <span class="cmd">gh repo list --limit 1</span></div>
+            <div class="terminal-line"><span class="output">136 repositories | <span class="success">open source</span></span></div>
+            <div class="terminal-line"><br></div>
+            <div class="terminal-line"><span class="prompt">wil@arch:~$</span> <span class="cmd">systemctl status applesauce</span></div>
+            <div class="terminal-line"><span class="success">&#9679; active (shipping)</span></div>
           </div>
         </div>
       </div>
