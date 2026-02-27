@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Applesauce — AI Tools That Just Work</title>
   <meta name="description" content="Applesauce builds AI-native products that solve real problems. Photo-to-listing for resellers, behavioral benchmarking for LLMs, and more.">
+  <meta property="og:title" content="Applesauce — AI Tools That Just Work">
+  <meta property="og:description" content="Photo-to-listing for resellers, behavioral benchmarking for LLMs, and more.">
+  <meta property="og:url" content="https://applesauce.chat/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#111117">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +23,7 @@
     :root, [data-theme="dark"] {
       --bg: #111117;
       --bg-subtle: #1a1a22;
-      --card-bg: rgba(24,24,32,0.75);
+      --card-bg: #1a1a22;
       --card-border: rgba(255,255,255,0.06);
       --card-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
       --card-hover-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.15);
@@ -49,7 +55,7 @@
     [data-theme="warm"] {
       --bg: #F2F0EB;
       --bg-subtle: #ECEAE4;
-      --card-bg: rgba(255,255,255,0.55);
+      --card-bg: #F5F3EE;
       --card-border: rgba(212,197,170,0.5);
       --card-shadow: 0 1px 2px rgba(42,33,24,0.04), 0 4px 16px rgba(42,33,24,0.06);
       --card-hover-shadow: 0 2px 4px rgba(42,33,24,0.06), 0 8px 32px rgba(42,33,24,0.08);
@@ -105,8 +111,6 @@
       top: 0;
       z-index: var(--z-sticky);
       background: var(--bg);
-      backdrop-filter: blur(var(--blur));
-      -webkit-backdrop-filter: blur(var(--blur));
       transition: background 0.4s var(--ease-out);
     }
     .nav-brand {
@@ -264,13 +268,12 @@
     }
     .glass-card {
       background: var(--card-bg);
-      backdrop-filter: blur(var(--blur));
-      -webkit-backdrop-filter: blur(var(--blur));
       border: 1px solid var(--card-border);
       border-radius: var(--radius-xl);
       padding: 24px;
       box-shadow: var(--card-shadow);
       transition: var(--transition-smooth);
+      contain: layout style paint;
     }
     .glass-card:hover {
       box-shadow: var(--card-hover-shadow);
@@ -351,6 +354,7 @@
       background: var(--bg-subtle);
       position: relative;
       transition: var(--transition-smooth);
+      contain: layout style paint;
     }
     .marquee-item:hover { border-color: var(--accent-primary); transform: scale(1.05); }
     .marquee-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -568,11 +572,11 @@
         </div>
         <h1>AI tools that<br><em>just work.</em></h1>
         <p class="hero-desc">
-          We build AI-native products that solve real problems. Our first product, Sell,
+          We build AI-native products that solve real problems. Our first product, Sell Applesauce,
           turns photos into marketplace listings in seconds. More tools shipping soon.
         </p>
         <div class="hero-actions">
-          <a href="https://sell.applesauce.chat" class="btn-primary">Try Sell</a>
+          <a href="https://sell.applesauce.chat" class="btn-primary">Try Sell Applesauce</a>
           <a href="#products" class="btn-secondary">See all products</a>
         </div>
       </div>
@@ -585,54 +589,54 @@
       <div class="reveal">
         <div class="data-label">Products</div>
         <h2 class="section-title">What we're building</h2>
-        <p class="section-desc">Sell is our flagship. More products shipping over the coming months.</p>
+        <p class="section-desc">Sell Applesauce is our flagship. More products shipping over the coming months.</p>
       </div>
 
       <div class="product-grid">
         <div class="glass-card product-featured reveal">
           <div class="product-status status-live"><span class="dot"></span> Live</div>
-          <h3>Sell</h3>
+          <h3>Sell Applesauce</h3>
           <p>Our first product. Snap a photo of anything you want to sell — AI identifies the item, researches real eBay sold prices, and generates optimized listings for eBay and Facebook Marketplace. Ready to post in seconds, auto-posting included.</p>
 
           <div class="product-showcase">
             <div class="marquee-track">
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/super-nintendo.webp" alt="Super Nintendo" loading="lazy"><div class="marquee-label"><span>SNES</span><span class="price">$89</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/levis-501-jeans.webp" alt="Levi's 501 Jeans" loading="lazy"><div class="marquee-label"><span>Levi's 501</span><span class="price">$67</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/kitchenaid-stand-mixer.webp" alt="KitchenAid Mixer" loading="lazy"><div class="marquee-label"><span>KitchenAid</span><span class="price">$148</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/ti84-calculator.webp" alt="TI-84 Calculator" loading="lazy"><div class="marquee-label"><span>TI-84</span><span class="price">$54</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/pyrex-mixing-bowl.webp" alt="Pyrex Bowl" loading="lazy"><div class="marquee-label"><span>Pyrex</span><span class="price">$82</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/northface-nuptse.webp" alt="North Face Nuptse" loading="lazy"><div class="marquee-label"><span>Nuptse</span><span class="price">$92</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/nike-dunk-low.webp" alt="Nike Dunk Low" loading="lazy"><div class="marquee-label"><span>Dunk Low</span><span class="price">$108</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/patagonia-fleece.webp" alt="Patagonia Fleece" loading="lazy"><div class="marquee-label"><span>Patagonia</span><span class="price">$58</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/canon-eos-rebel.webp" alt="Canon DSLR" loading="lazy"><div class="marquee-label"><span>Canon EOS</span><span class="price">$135</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/le-creuset-dutch-oven.webp" alt="Le Creuset" loading="lazy"><div class="marquee-label"><span>Le Creuset</span><span class="price">$165</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/sony-ps2.webp" alt="Sony PS2" loading="lazy"><div class="marquee-label"><span>PS2</span><span class="price">$78</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/pendleton-blanket.webp" alt="Pendleton Blanket" loading="lazy"><div class="marquee-label"><span>Pendleton</span><span class="price">$88</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/heroquest-board-game.webp" alt="HeroQuest" loading="lazy"><div class="marquee-label"><span>HeroQuest</span><span class="price">$124</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/carhartt-chore-coat.webp" alt="Carhartt Chore Coat" loading="lazy"><div class="marquee-label"><span>Carhartt</span><span class="price">$46</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/vitamix-blender.webp" alt="Vitamix" loading="lazy"><div class="marquee-label"><span>Vitamix</span><span class="price">$112</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/polo-bear-sweater.webp" alt="Polo Bear Sweater" loading="lazy"><div class="marquee-label"><span>Polo Bear</span><span class="price">$73</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/air-fryer.webp" alt="Air Fryer" loading="lazy"><div class="marquee-label"><span>Air Fryer</span><span class="price">$45</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/game-controller.webp" alt="Game Controller" loading="lazy"><div class="marquee-label"><span>Controller</span><span class="price">$38</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/super-nintendo.webp" alt="Super Nintendo" loading="lazy"><div class="marquee-label"><span>SNES</span><span class="price">$89</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/levis-501-jeans.webp" alt="Levi's 501 Jeans" loading="lazy"><div class="marquee-label"><span>Levi's 501</span><span class="price">$67</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/kitchenaid-stand-mixer.webp" alt="KitchenAid Mixer" loading="lazy"><div class="marquee-label"><span>KitchenAid</span><span class="price">$148</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/ti84-calculator.webp" alt="TI-84 Calculator" loading="lazy"><div class="marquee-label"><span>TI-84</span><span class="price">$54</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/pyrex-mixing-bowl.webp" alt="Pyrex Bowl" loading="lazy"><div class="marquee-label"><span>Pyrex</span><span class="price">$82</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/northface-nuptse.webp" alt="North Face Nuptse" loading="lazy"><div class="marquee-label"><span>Nuptse</span><span class="price">$92</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/nike-dunk-low.webp" alt="Nike Dunk Low" loading="lazy"><div class="marquee-label"><span>Dunk Low</span><span class="price">$108</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/patagonia-fleece.webp" alt="Patagonia Fleece" loading="lazy"><div class="marquee-label"><span>Patagonia</span><span class="price">$58</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/canon-eos-rebel.webp" alt="Canon DSLR" loading="lazy"><div class="marquee-label"><span>Canon EOS</span><span class="price">$135</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/le-creuset-dutch-oven.webp" alt="Le Creuset" loading="lazy"><div class="marquee-label"><span>Le Creuset</span><span class="price">$165</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/sony-ps2.webp" alt="Sony PS2" loading="lazy"><div class="marquee-label"><span>PS2</span><span class="price">$78</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/pendleton-blanket.webp" alt="Pendleton Blanket" loading="lazy"><div class="marquee-label"><span>Pendleton</span><span class="price">$88</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/heroquest-board-game.webp" alt="HeroQuest" loading="lazy"><div class="marquee-label"><span>HeroQuest</span><span class="price">$124</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/carhartt-chore-coat.webp" alt="Carhartt Chore Coat" loading="lazy"><div class="marquee-label"><span>Carhartt</span><span class="price">$46</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/vitamix-blender.webp" alt="Vitamix" loading="lazy"><div class="marquee-label"><span>Vitamix</span><span class="price">$112</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/polo-bear-sweater.webp" alt="Polo Bear Sweater" loading="lazy"><div class="marquee-label"><span>Polo Bear</span><span class="price">$73</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/air-fryer.webp" alt="Air Fryer" loading="lazy"><div class="marquee-label"><span>Air Fryer</span><span class="price">$45</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/game-controller.webp" alt="Game Controller" loading="lazy"><div class="marquee-label"><span>Controller</span><span class="price">$38</span></div></div>
               <!-- Duplicate for loop -->
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/super-nintendo.webp" alt="Super Nintendo" loading="lazy"><div class="marquee-label"><span>SNES</span><span class="price">$89</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/levis-501-jeans.webp" alt="Levi's 501 Jeans" loading="lazy"><div class="marquee-label"><span>Levi's 501</span><span class="price">$67</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/kitchenaid-stand-mixer.webp" alt="KitchenAid Mixer" loading="lazy"><div class="marquee-label"><span>KitchenAid</span><span class="price">$148</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/ti84-calculator.webp" alt="TI-84 Calculator" loading="lazy"><div class="marquee-label"><span>TI-84</span><span class="price">$54</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/pyrex-mixing-bowl.webp" alt="Pyrex Bowl" loading="lazy"><div class="marquee-label"><span>Pyrex</span><span class="price">$82</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/northface-nuptse.webp" alt="North Face Nuptse" loading="lazy"><div class="marquee-label"><span>Nuptse</span><span class="price">$92</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/nike-dunk-low.webp" alt="Nike Dunk Low" loading="lazy"><div class="marquee-label"><span>Dunk Low</span><span class="price">$108</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/patagonia-fleece.webp" alt="Patagonia Fleece" loading="lazy"><div class="marquee-label"><span>Patagonia</span><span class="price">$58</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/canon-eos-rebel.webp" alt="Canon DSLR" loading="lazy"><div class="marquee-label"><span>Canon EOS</span><span class="price">$135</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/le-creuset-dutch-oven.webp" alt="Le Creuset" loading="lazy"><div class="marquee-label"><span>Le Creuset</span><span class="price">$165</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/sony-ps2.webp" alt="Sony PS2" loading="lazy"><div class="marquee-label"><span>PS2</span><span class="price">$78</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/pendleton-blanket.webp" alt="Pendleton Blanket" loading="lazy"><div class="marquee-label"><span>Pendleton</span><span class="price">$88</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/heroquest-board-game.webp" alt="HeroQuest" loading="lazy"><div class="marquee-label"><span>HeroQuest</span><span class="price">$124</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/carhartt-chore-coat.webp" alt="Carhartt Chore Coat" loading="lazy"><div class="marquee-label"><span>Carhartt</span><span class="price">$46</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/vitamix-blender.webp" alt="Vitamix" loading="lazy"><div class="marquee-label"><span>Vitamix</span><span class="price">$112</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/polo-bear-sweater.webp" alt="Polo Bear Sweater" loading="lazy"><div class="marquee-label"><span>Polo Bear</span><span class="price">$73</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/air-fryer.webp" alt="Air Fryer" loading="lazy"><div class="marquee-label"><span>Air Fryer</span><span class="price">$45</span></div></div>
-              <div class="marquee-item"><img src="https://ape.applesauce.chat/listing-images/game-controller.webp" alt="Game Controller" loading="lazy"><div class="marquee-label"><span>Controller</span><span class="price">$38</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/super-nintendo.webp" alt="Super Nintendo" loading="lazy"><div class="marquee-label"><span>SNES</span><span class="price">$89</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/levis-501-jeans.webp" alt="Levi's 501 Jeans" loading="lazy"><div class="marquee-label"><span>Levi's 501</span><span class="price">$67</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/kitchenaid-stand-mixer.webp" alt="KitchenAid Mixer" loading="lazy"><div class="marquee-label"><span>KitchenAid</span><span class="price">$148</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/ti84-calculator.webp" alt="TI-84 Calculator" loading="lazy"><div class="marquee-label"><span>TI-84</span><span class="price">$54</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/pyrex-mixing-bowl.webp" alt="Pyrex Bowl" loading="lazy"><div class="marquee-label"><span>Pyrex</span><span class="price">$82</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/northface-nuptse.webp" alt="North Face Nuptse" loading="lazy"><div class="marquee-label"><span>Nuptse</span><span class="price">$92</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/nike-dunk-low.webp" alt="Nike Dunk Low" loading="lazy"><div class="marquee-label"><span>Dunk Low</span><span class="price">$108</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/patagonia-fleece.webp" alt="Patagonia Fleece" loading="lazy"><div class="marquee-label"><span>Patagonia</span><span class="price">$58</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/canon-eos-rebel.webp" alt="Canon DSLR" loading="lazy"><div class="marquee-label"><span>Canon EOS</span><span class="price">$135</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/le-creuset-dutch-oven.webp" alt="Le Creuset" loading="lazy"><div class="marquee-label"><span>Le Creuset</span><span class="price">$165</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/sony-ps2.webp" alt="Sony PS2" loading="lazy"><div class="marquee-label"><span>PS2</span><span class="price">$78</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/pendleton-blanket.webp" alt="Pendleton Blanket" loading="lazy"><div class="marquee-label"><span>Pendleton</span><span class="price">$88</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/heroquest-board-game.webp" alt="HeroQuest" loading="lazy"><div class="marquee-label"><span>HeroQuest</span><span class="price">$124</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/carhartt-chore-coat.webp" alt="Carhartt Chore Coat" loading="lazy"><div class="marquee-label"><span>Carhartt</span><span class="price">$46</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/vitamix-blender.webp" alt="Vitamix" loading="lazy"><div class="marquee-label"><span>Vitamix</span><span class="price">$112</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/polo-bear-sweater.webp" alt="Polo Bear Sweater" loading="lazy"><div class="marquee-label"><span>Polo Bear</span><span class="price">$73</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/air-fryer.webp" alt="Air Fryer" loading="lazy"><div class="marquee-label"><span>Air Fryer</span><span class="price">$45</span></div></div>
+              <div class="marquee-item"><img width="140" height="140" src="https://ape.applesauce.chat/listing-images/game-controller.webp" alt="Game Controller" loading="lazy"><div class="marquee-label"><span>Controller</span><span class="price">$38</span></div></div>
             </div>
           </div>
 
@@ -642,7 +646,7 @@
             <span>playwright</span>
             <span>ebay api</span>
           </div>
-          <a href="https://sell.applesauce.chat" class="btn-primary" style="margin-top: 16px;">Try Sell</a>
+          <a href="https://sell.applesauce.chat" class="btn-primary" style="margin-top: 16px;">Try Sell Applesauce</a>
         </div>
 
         <div class="glass-card reveal">
@@ -687,6 +691,7 @@
           <p>
             Now channeling all of that into <strong>shipping products that solve real problems</strong> — fast, AI-native, and built to work on day one.
           </p>
+          <a href="https://gradstudent.me" class="btn-secondary" style="margin-top: 8px;">Read more at gradstudent.me</a>
           <div class="social-links">
             <a href="https://github.com/tsangares" class="social-link" title="GitHub">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -750,7 +755,7 @@
       </div>
       <div class="footer-col">
         <h4>Products</h4>
-        <a href="https://sell.applesauce.chat">Sell</a>
+        <a href="https://sell.applesauce.chat">Sell Applesauce</a>
         <a href="https://bench.applesauce.chat">Bench</a>
         <a href="https://github.com/tsangares">Open Source</a>
       </div>
