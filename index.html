@@ -70,7 +70,7 @@
       --toggle-icon: "light_mode";
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       background: var(--bg);
@@ -282,6 +282,7 @@
     .product-featured {
       grid-column: span 2;
       border-color: color-mix(in srgb, var(--accent-primary) 30%, transparent);
+      overflow: hidden;
     }
     .product-status {
       display: inline-flex; align-items: center; gap: 4px;
@@ -536,7 +537,7 @@
       .footer-grid { grid-template-columns: 1fr; gap: 24px; }
       .hero h1 { font-size: var(--text-2xl); }
       .section-title { font-size: var(--text-xl); }
-      .product-showcase { margin: 16px -16px; }
+      .product-showcase { margin: 16px -24px; max-width: calc(100% + 48px); }
       .marquee-item { width: 110px; height: 110px; }
       section { padding: 48px 0; }
       .container { padding: 0 16px; }
