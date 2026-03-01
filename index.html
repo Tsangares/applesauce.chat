@@ -72,6 +72,31 @@
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
+    /* ════ Scroll progress bar ════ */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-green));
+      z-index: 10000;
+      transition: none;
+    }
+
+    /* ════ Cursor glow ════ */
+    .cursor-glow {
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent-primary) 8%, transparent), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    body:hover .cursor-glow { opacity: 1; }
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -163,8 +188,52 @@
       display: flex;
       align-items: center;
       padding-top: 40px;
+      position: relative;
+      overflow: hidden;
     }
-    .hero-inner { max-width: 700px; }
+    .hero-inner { max-width: 700px; position: relative; z-index: 1; }
+
+    /* Gradient orbs */
+    .hero-orbs {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+    .hero-orb:nth-child(1) {
+      width: 500px; height: 500px;
+      background: var(--accent-primary);
+      top: -20%; left: -10%;
+      animation-duration: 18s;
+    }
+    .hero-orb:nth-child(2) {
+      width: 350px; height: 350px;
+      background: var(--accent-green);
+      bottom: -10%; right: -5%;
+      animation-duration: 22s;
+      animation-delay: -5s;
+    }
+    .hero-orb:nth-child(3) {
+      width: 250px; height: 250px;
+      background: var(--accent-gold);
+      top: 30%; right: 20%;
+      animation-duration: 16s;
+      animation-delay: -10s;
+      opacity: 0.08;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+      100% { transform: translate(15px, -10px) scale(1.02); }
+    }
     .hero-label {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
@@ -190,6 +259,16 @@
     .hero h1 em {
       font-style: normal;
       color: var(--accent-primary);
+    }
+    /* Word reveal */
+    .hero h1 .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: wordReveal 0.5s var(--ease-out) forwards;
+    }
+    @keyframes wordReveal {
+      to { opacity: 1; transform: translateY(0); }
     }
     .hero-desc {
       font-size: var(--text-md);
@@ -240,6 +319,47 @@
     }
     .btn-secondary:hover { color: var(--text); border-color: var(--accent-primary); background: var(--bg-subtle); }
 
+    /* ════ Stats strip ════ */
+    .stats-strip {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      margin: 0 auto;
+      max-width: 900px;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px 16px;
+      position: relative;
+    }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--card-border);
+    }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      color: var(--text);
+      display: block;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
     /* ════ Section headers ════ */
     .data-label {
       font-family: var(--font-mono);
@@ -277,8 +397,21 @@
     }
     .glass-card:hover {
       box-shadow: var(--card-hover-shadow);
-      transform: translateY(-2px);
     }
+    .glass-card.tilt-card {
+      transform-style: preserve-3d;
+      transition: box-shadow 0.3s var(--ease-out), transform 0.15s ease-out;
+    }
+    .glass-card.tilt-card .card-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
+    }
+    .glass-card.tilt-card:hover .card-shine { opacity: 1; }
     .product-featured {
       grid-column: span 2;
       border-color: color-mix(in srgb, var(--accent-primary) 30%, transparent);
@@ -542,10 +675,28 @@
       section { padding: 48px 0; }
       .container { padding: 0 16px; }
       .footer-bottom { flex-direction: column; gap: 8px; }
+      .stats-strip { flex-wrap: wrap; gap: 16px; }
+      .stat-item:not(:last-child)::after { display: none; }
+      .stat-item { flex: 0 0 calc(50% - 8px); }
+    }
+
+    /* ════ Reduced motion ════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .cursor-glow, .hero-orbs { display: none; }
+      .hero h1 .word { opacity: 1; transform: none; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body data-theme="dark">
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- Nav -->
   <nav class="app-nav">
@@ -565,6 +716,11 @@
 
   <!-- Hero -->
   <section class="hero">
+    <div class="hero-orbs">
+      <div class="hero-orb"></div>
+      <div class="hero-orb"></div>
+      <div class="hero-orb"></div>
+    </div>
     <div class="container">
       <div class="hero-inner stagger">
         <div class="hero-label">
@@ -584,6 +740,26 @@
     </div>
   </section>
 
+  <!-- Stats -->
+  <div class="stats-strip reveal" id="statsStrip">
+    <div class="stat-item">
+      <span class="stat-number" data-target="136">136</span>
+      <span class="stat-label">Open Source Repos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="14">14</span>
+      <span class="stat-label">Years Coding</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="3">3</span>
+      <span class="stat-label">Products</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="1">1</span>
+      <span class="stat-label">PhD</span>
+    </div>
+  </div>
+
   <!-- Products -->
   <section id="products">
     <div class="container">
@@ -594,7 +770,8 @@
       </div>
 
       <div class="product-grid">
-        <div class="glass-card product-featured reveal">
+        <div class="glass-card product-featured tilt-card reveal" style="position:relative;">
+          <div class="card-shine"></div>
           <div class="product-status status-live"><span class="dot"></span> Live</div>
           <h3>Sell Applesauce</h3>
           <p>Our first product. Snap a photo of anything you want to sell — AI identifies the item, researches real eBay sold prices, and generates optimized listings for eBay and Facebook Marketplace. Ready to post in seconds, auto-posting included.</p>
@@ -650,7 +827,8 @@
           <a href="https://sell.applesauce.chat" class="btn-primary" style="margin-top: 16px;">Try Sell Applesauce</a>
         </div>
 
-        <div class="glass-card reveal">
+        <div class="glass-card tilt-card reveal" style="position:relative;">
+          <div class="card-shine"></div>
           <div class="product-status status-dev"><span class="dot"></span> In Development</div>
           <h3>Bench</h3>
           <p>Behavioral benchmarking for LLMs. Run game theory, risk, and cognitive bias experiments on any model. Get quantitative behavioral profiles.</p>
@@ -661,7 +839,8 @@
           </div>
         </div>
 
-        <div class="glass-card reveal">
+        <div class="glass-card tilt-card reveal" style="position:relative;">
+          <div class="card-shine"></div>
           <div class="product-status status-live"><span class="dot"></span> Live</div>
           <h3>Open Source</h3>
           <p>136+ repos on GitHub. Computer vision, blockchain IoT, market simulations, and everything built along the way.</p>
@@ -741,7 +920,9 @@
       <p>Got an idea? Want to collaborate? We're always building.</p>
       <div class="cta-actions">
         <a href="mailto:hello@applesauce.chat" class="btn-primary">Say Hello</a>
-        <a href="https://github.com/tsangares" class="btn-secondary">GitHub</a>
+        <a href="https://linkedin.com/in/wyatt-william" class="btn-secondary" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://gradstudent.me" class="btn-secondary" target="_blank" rel="noopener">gradstudent.me</a>
+        <a href="https://github.com/tsangares" class="btn-secondary" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
@@ -774,6 +955,8 @@
   </footer>
 
   <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Theme
     const theme = localStorage.getItem('applesauce_theme') || 'dark';
     document.body.setAttribute('data-theme', theme);
@@ -782,6 +965,36 @@
       const next = current === 'dark' ? 'warm' : 'dark';
       document.body.setAttribute('data-theme', next);
       localStorage.setItem('applesauce_theme', next);
+    }
+
+    // Scroll progress bar
+    const scrollBar = document.getElementById('scrollProgress');
+    if (!prefersReducedMotion) {
+      window.addEventListener('scroll', () => {
+        const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        scrollBar.style.width = pct + '%';
+      }, { passive: true });
+    }
+
+    // Cursor glow
+    const glow = document.getElementById('cursorGlow');
+    if (!prefersReducedMotion && window.innerWidth > 768) {
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      }, { passive: true });
+    }
+
+    // Hero word reveal
+    const heroH1 = document.querySelector('.hero h1');
+    if (heroH1) {
+      const html = heroH1.innerHTML;
+      heroH1.innerHTML = html.replace(/(<em>.*?<\/em>|<br\s*\/?>|\S+)/g, (match, _p, offset) => {
+        if (match.startsWith('<br')) return match;
+        const i = html.substring(0, offset).split(/(<em>.*?<\/em>|<br\s*\/?>|\S+)/g).filter(s => s && !s.startsWith('<br') && s.trim()).length;
+        const delay = 0.1 + i * 0.08;
+        return `<span class="word" style="animation-delay:${delay}s">${match}</span> `;
+      });
     }
 
     // Scroll reveal
@@ -794,6 +1007,49 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Stats counter animation
+    const statsObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-number').forEach(el => {
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1200;
+            const start = performance.now();
+            const tick = (now) => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.round(eased * target) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          });
+          statsObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const statsStrip = document.getElementById('statsStrip');
+    if (statsStrip) statsObs.observe(statsStrip);
+
+    // 3D tilt on cards
+    if (!prefersReducedMotion && window.innerWidth > 768) {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rotateX = (0.5 - y) * 8;
+          const rotateY = (x - 0.5) * 8;
+          card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+          card.style.setProperty('--shine-x', (x * 100) + '%');
+          card.style.setProperty('--shine-y', (y * 100) + '%');
+        }, { passive: true });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
 
     // Terminal typing
     const termObs = new IntersectionObserver((entries) => {
