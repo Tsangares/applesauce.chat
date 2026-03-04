@@ -468,39 +468,20 @@
 
     /* ════ Card Visuals ════ */
 
-    /* Pickl — scanning label animation */
-    /* Pickl — scrolling ingredient scanner */
-    .pickl-showcase {
-      position: relative;
-      margin: 0 -24px 16px;
-      overflow: hidden;
-      border-bottom: 1px solid var(--card-border);
-      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-green) 4%, transparent), transparent);
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-    .pickl-showcase::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
-      box-shadow: 0 0 12px var(--accent-green);
-      animation: scanLine 2.5s ease-in-out infinite;
-      z-index: 2;
-    }
+    /* Pickl CSS removed — now uses .graze-showcase */
     @keyframes scanLine {
       0%, 100% { top: 8%; opacity: 0.3; }
       50% { top: 88%; opacity: 1; }
     }
-    .pickl-track {
+    .graze-track {
       display: flex;
       gap: 8px;
       padding: 14px 0;
-      animation: pickl-scroll 25s linear infinite;
+      animation: graze-scroll 25s linear infinite;
     }
-    .pickl-track:hover { animation-play-state: paused; }
-    @keyframes pickl-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .pickl-pill {
+    .graze-track:hover { animation-play-state: paused; }
+    @keyframes graze-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .graze-pill {
       font-family: var(--font-mono);
       font-size: 0.65rem;
       padding: 5px 10px;
@@ -510,14 +491,14 @@
       flex-shrink: 0;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .pickl-pill:hover { transform: scale(1.08); }
-    .pickl-pill.safe { color: var(--accent-green); background: color-mix(in srgb, var(--accent-green) 8%, transparent); }
-    .pickl-pill.safe:hover { border-color: var(--accent-green); }
-    .pickl-pill.warn { color: var(--accent-gold); background: color-mix(in srgb, var(--accent-gold) 8%, transparent); }
-    .pickl-pill.warn:hover { border-color: var(--accent-gold); }
-    .pickl-pill.bad { color: var(--accent-red); background: color-mix(in srgb, var(--accent-red) 8%, transparent); }
-    .pickl-pill.bad:hover { border-color: var(--accent-red); }
-    .pickl-score {
+    .graze-pill:hover { transform: scale(1.08); }
+    .graze-pill.safe { color: var(--accent-green); background: color-mix(in srgb, var(--accent-green) 8%, transparent); }
+    .graze-pill.safe:hover { border-color: var(--accent-green); }
+    .graze-pill.warn { color: var(--accent-gold); background: color-mix(in srgb, var(--accent-gold) 8%, transparent); }
+    .graze-pill.warn:hover { border-color: var(--accent-gold); }
+    .graze-pill.bad { color: var(--accent-red); background: color-mix(in srgb, var(--accent-red) 8%, transparent); }
+    .graze-pill.bad:hover { border-color: var(--accent-red); }
+    .graze-score {
       position: absolute;
       right: 16px; top: 50%; transform: translateY(-50%);
       font-family: var(--font-heading);
@@ -531,88 +512,126 @@
       border: 1px solid color-mix(in srgb, var(--accent-green) 20%, transparent);
     }
 
-    /* Tome — scrolling document feed */
+    /* Tome — collectible card showcase */
     .tome-showcase {
+      position: relative;
+      margin: 0 -24px 16px;
+      padding: 16px 24px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--card-border);
+      background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(251,191,36,0.04), transparent);
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      min-height: 160px;
+      align-items: center;
+    }
+    .tome-card-mini {
+      width: 90px;
+      height: 130px;
+      border-radius: 8px;
+      border: 1.5px solid;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+      flex-shrink: 0;
+      background: var(--bg);
+    }
+    .tome-card-mini:hover {
+      transform: translateY(-6px) scale(1.05);
+    }
+    .tome-card-mini.rarity-legendary {
+      border-color: #fbbf24;
+      box-shadow: 0 0 12px rgba(251,191,36,0.2);
+    }
+    .tome-card-mini.rarity-legendary:hover { box-shadow: 0 0 20px rgba(251,191,36,0.35); }
+    .tome-card-mini.rarity-epic {
+      border-color: #a78bfa;
+      box-shadow: 0 0 12px rgba(167,139,250,0.15);
+    }
+    .tome-card-mini.rarity-epic:hover { box-shadow: 0 0 20px rgba(167,139,250,0.3); }
+    .tome-card-mini.rarity-rare {
+      border-color: #60a5fa;
+      box-shadow: 0 0 8px rgba(96,165,250,0.12);
+    }
+    .tome-card-mini.rarity-rare:hover { box-shadow: 0 0 16px rgba(96,165,250,0.25); }
+    .tome-card-mini.rarity-common {
+      border-color: var(--card-border);
+    }
+    .tome-card-img {
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--bg-subtle), color-mix(in srgb, var(--accent-primary) 10%, var(--bg-subtle)));
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .tome-card-name {
+      font-family: var(--font-heading);
+      font-size: 0.55rem;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .tome-card-stats {
+      display: flex;
+      gap: 4px;
+      margin-top: auto;
+    }
+    .tome-card-stat {
+      font-family: var(--font-mono);
+      font-size: 0.45rem;
+      padding: 1px 3px;
+      border-radius: 2px;
+      background: var(--bg-subtle);
+      color: var(--text-dim);
+    }
+    .tome-card-rarity {
+      position: absolute;
+      top: 3px; right: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tome-card-element {
+      position: absolute;
+      top: 3px; left: 5px;
+      font-size: 0.5rem;
+    }
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .tome-card-mini:nth-child(1) { animation: cardFloat 4s ease-in-out infinite; }
+    .tome-card-mini:nth-child(2) { animation: cardFloat 4.5s ease-in-out infinite 0.5s; }
+    .tome-card-mini:nth-child(3) { animation: cardFloat 3.8s ease-in-out infinite 1s; }
+    .tome-card-mini:nth-child(4) { animation: cardFloat 4.2s ease-in-out infinite 1.5s; }
+
+    /* Graze (formerly Pickl) — ingredient scanner */
+    .graze-showcase {
       position: relative;
       margin: 0 -24px 16px;
       overflow: hidden;
       border-bottom: 1px solid var(--card-border);
-      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-primary) 4%, transparent), transparent);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-green) 4%, transparent), transparent);
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-    .tome-track {
-      display: flex;
-      gap: 10px;
-      padding: 12px 0;
-      animation: tome-scroll 30s linear infinite;
-    }
-    .tome-track:hover { animation-play-state: paused; }
-    @keyframes tome-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .tome-doc {
-      flex-shrink: 0;
-      width: 140px;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: color-mix(in srgb, var(--bg-surface) 60%, transparent);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .tome-doc:hover { transform: scale(1.05); border-color: var(--accent-primary); }
-    .tome-doc-icon {
-      font-size: 0.7rem;
-      margin-bottom: 4px;
-      display: flex; align-items: center; gap: 4px;
-      color: var(--text-dim);
-    }
-    .tome-doc-icon .dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent-primary);
-      display: inline-block;
-    }
-    .tome-doc-title {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 2px;
-    }
-    .tome-doc-snippet {
-      font-family: var(--font-mono);
-      font-size: 0.55rem;
-      color: var(--text-dim);
-      line-height: 1.3;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .tome-search-bar {
+    .graze-showcase::after {
+      content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 6px 16px;
-      background: color-mix(in srgb, var(--bg) 85%, transparent);
-      backdrop-filter: blur(8px);
-      border-top: 1px solid var(--card-border);
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-dim);
-      display: flex; align-items: center; gap: 4px;
+      left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+      box-shadow: 0 0 12px var(--accent-green);
+      animation: scanLine 2.5s ease-in-out infinite;
       z-index: 2;
-    }
-    .tome-search-bar::before { content: '>'; color: var(--accent-primary); }
-    .tome-cursor {
-      display: inline-block;
-      width: 6px; height: 12px;
-      background: var(--accent-primary);
-      animation: cursorBlink 1s step-end infinite;
-    }
-    @keyframes cursorBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
     }
 
     /* ════ Marquee ════ */
@@ -676,6 +695,91 @@
       transition: var(--transition-quick);
     }
     .about-text a:hover { border-color: var(--accent-primary); }
+
+    /* Products Detail Section */
+    .products-detail {
+      margin-top: 80px;
+    }
+    .products-detail .section-title {
+      margin-bottom: 48px;
+    }
+    .product-detail-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(20px);
+      transition: var(--transition-quick);
+    }
+    .product-detail-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+    .product-detail-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .product-detail-header h3 {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      color: var(--text);
+      margin: 0;
+    }
+    .product-detail-header .product-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .product-badge.live {
+      background: color-mix(in srgb, var(--accent-green) 15%, transparent);
+      color: var(--accent-green);
+    }
+    .product-badge.soon {
+      background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+      color: var(--accent-primary);
+    }
+    .product-detail-card p {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .product-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .product-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+    }
+    .product-feature::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      flex-shrink: 0;
+    }
+    .product-detail-card .btn-secondary {
+      margin-top: 16px;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      .product-features {
+        grid-template-columns: 1fr;
+      }
+    }
     .social-links { display: flex; gap: 8px; margin-top: 24px; }
     .social-link {
       width: 40px; height: 40px;
@@ -976,163 +1080,121 @@
           <a href="https://sell.applesauce.chat" class="btn-primary" style="margin-top: 16px;">Try Sell Applesauce</a>
         </div>
 
+        <!-- Tome — collectible card game -->
         <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
           <div class="card-shine"></div>
-          <div class="pickl-showcase">
-            <div class="pickl-track">
-              <span class="pickl-pill safe">Vitamin C</span>
-              <span class="pickl-pill safe">Citric Acid</span>
-              <span class="pickl-pill warn">Yellow #5</span>
-              <span class="pickl-pill safe">Niacin</span>
-              <span class="pickl-pill bad">BHA</span>
-              <span class="pickl-pill safe">Riboflavin</span>
-              <span class="pickl-pill warn">Carrageenan</span>
-              <span class="pickl-pill safe">Iron</span>
-              <span class="pickl-pill safe">Calcium</span>
-              <span class="pickl-pill bad">Sodium Nitrite</span>
-              <span class="pickl-pill safe">Thiamine</span>
-              <span class="pickl-pill warn">Soy Lecithin</span>
-              <span class="pickl-pill safe">Folic Acid</span>
-              <span class="pickl-pill bad">Red #40</span>
-              <span class="pickl-pill safe">Zinc</span>
-              <span class="pickl-pill warn">Maltodextrin</span>
-              <span class="pickl-pill safe">Biotin</span>
-              <span class="pickl-pill safe">Potassium</span>
-              <!-- duplicate for seamless loop -->
-              <span class="pickl-pill safe">Vitamin C</span>
-              <span class="pickl-pill safe">Citric Acid</span>
-              <span class="pickl-pill warn">Yellow #5</span>
-              <span class="pickl-pill safe">Niacin</span>
-              <span class="pickl-pill bad">BHA</span>
-              <span class="pickl-pill safe">Riboflavin</span>
-              <span class="pickl-pill warn">Carrageenan</span>
-              <span class="pickl-pill safe">Iron</span>
-              <span class="pickl-pill safe">Calcium</span>
-              <span class="pickl-pill bad">Sodium Nitrite</span>
-              <span class="pickl-pill safe">Thiamine</span>
-              <span class="pickl-pill warn">Soy Lecithin</span>
-              <span class="pickl-pill safe">Folic Acid</span>
-              <span class="pickl-pill bad">Red #40</span>
-              <span class="pickl-pill safe">Zinc</span>
-              <span class="pickl-pill warn">Maltodextrin</span>
-              <span class="pickl-pill safe">Biotin</span>
-              <span class="pickl-pill safe">Potassium</span>
+          <div class="tome-showcase">
+            <div class="tome-card-mini rarity-legendary">
+              <span class="tome-card-element">&#9876;</span>
+              <span class="tome-card-rarity" style="color:#fbbf24">LEGENDARY</span>
+              <div class="tome-card-img">&#128293;</div>
+              <div class="tome-card-name">Infernal Drake</div>
+              <div class="tome-card-stats">
+                <span class="tome-card-stat">ATK 94</span>
+                <span class="tome-card-stat">DEF 78</span>
+              </div>
             </div>
-            <span class="pickl-score">A+</span>
+            <div class="tome-card-mini rarity-epic">
+              <span class="tome-card-element">&#10052;</span>
+              <span class="tome-card-rarity" style="color:#a78bfa">EPIC</span>
+              <div class="tome-card-img">&#9889;</div>
+              <div class="tome-card-name">Storm Herald</div>
+              <div class="tome-card-stats">
+                <span class="tome-card-stat">ATK 82</span>
+                <span class="tome-card-stat">SPD 91</span>
+              </div>
+            </div>
+            <div class="tome-card-mini rarity-rare">
+              <span class="tome-card-element">&#127811;</span>
+              <span class="tome-card-rarity" style="color:#60a5fa">RARE</span>
+              <div class="tome-card-img">&#128056;</div>
+              <div class="tome-card-name">Forest Warden</div>
+              <div class="tome-card-stats">
+                <span class="tome-card-stat">ATK 65</span>
+                <span class="tome-card-stat">DEF 88</span>
+              </div>
+            </div>
+            <div class="tome-card-mini rarity-common">
+              <span class="tome-card-element">&#127754;</span>
+              <span class="tome-card-rarity" style="color:var(--text-dim)">COMMON</span>
+              <div class="tome-card-img">&#128167;</div>
+              <div class="tome-card-name">Tidecaller</div>
+              <div class="tome-card-stats">
+                <span class="tome-card-stat">ATK 42</span>
+                <span class="tome-card-stat">DEF 55</span>
+              </div>
+            </div>
           </div>
           <div style="padding: 0 24px 24px;">
             <div class="product-status status-live"><span class="dot"></span> Live</div>
-            <h3>Pickl</h3>
-            <p>Snap a label. Get the truth. Instant safety breakdown of every ingredient, additive, and allergen — color-coded so you know what's sketch before it hits your cart.</p>
+            <h3>Tome</h3>
+            <p>Turn any photo into a collectible trading card. AI extracts subjects, assigns stats and rarity, then drops them into your collection. Battle friends, fuse variants, chase legendaries.</p>
+            <div class="tech-tags">
+              <span>fastapi</span>
+              <span>gpt vision</span>
+              <span>card clash</span>
+              <span>fusion</span>
+            </div>
+            <a href="https://tome.applesauce.chat" class="btn-primary" style="margin-top: 12px;">Summon a Card</a>
+          </div>
+        </div>
+
+        <!-- Graze — ingredient safety scanner -->
+        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
+          <div class="card-shine"></div>
+          <div class="graze-showcase">
+            <div class="graze-track">
+              <span class="graze-pill safe">Vitamin C</span>
+              <span class="graze-pill safe">Citric Acid</span>
+              <span class="graze-pill warn">Yellow #5</span>
+              <span class="graze-pill safe">Niacin</span>
+              <span class="graze-pill bad">BHA</span>
+              <span class="graze-pill safe">Riboflavin</span>
+              <span class="graze-pill warn">Carrageenan</span>
+              <span class="graze-pill safe">Iron</span>
+              <span class="graze-pill safe">Calcium</span>
+              <span class="graze-pill bad">Sodium Nitrite</span>
+              <span class="graze-pill safe">Thiamine</span>
+              <span class="graze-pill warn">Soy Lecithin</span>
+              <span class="graze-pill safe">Folic Acid</span>
+              <span class="graze-pill bad">Red #40</span>
+              <span class="graze-pill safe">Zinc</span>
+              <span class="graze-pill warn">Maltodextrin</span>
+              <span class="graze-pill safe">Biotin</span>
+              <span class="graze-pill safe">Potassium</span>
+              <!-- duplicate for seamless loop -->
+              <span class="graze-pill safe">Vitamin C</span>
+              <span class="graze-pill safe">Citric Acid</span>
+              <span class="graze-pill warn">Yellow #5</span>
+              <span class="graze-pill safe">Niacin</span>
+              <span class="graze-pill bad">BHA</span>
+              <span class="graze-pill safe">Riboflavin</span>
+              <span class="graze-pill warn">Carrageenan</span>
+              <span class="graze-pill safe">Iron</span>
+              <span class="graze-pill safe">Calcium</span>
+              <span class="graze-pill bad">Sodium Nitrite</span>
+              <span class="graze-pill safe">Thiamine</span>
+              <span class="graze-pill warn">Soy Lecithin</span>
+              <span class="graze-pill safe">Folic Acid</span>
+              <span class="graze-pill bad">Red #40</span>
+              <span class="graze-pill safe">Zinc</span>
+              <span class="graze-pill warn">Maltodextrin</span>
+              <span class="graze-pill safe">Biotin</span>
+              <span class="graze-pill safe">Potassium</span>
+            </div>
+            <span class="graze-score">A+</span>
+          </div>
+          <div style="padding: 0 24px 24px;">
+            <div class="product-status status-live"><span class="dot"></span> Live</div>
+            <h3>Graze</h3>
+            <p>Know what's in your products. Snap a label — food, cosmetics, supplements, baby care — and get an instant safety score with every ingredient color-coded and explained.</p>
             <div class="tech-tags">
               <span>fastapi</span>
               <span>gpt vision</span>
               <span>56 additives</span>
-              <span>82 cosmetics</span>
+              <span>allergen profiles</span>
             </div>
-            <a href="https://pickl.applesauce.chat" class="btn-secondary" style="margin-top: 12px;">Scan Something</a>
-          </div>
-        </div>
-
-        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
-          <div class="card-shine"></div>
-          <div class="tome-showcase">
-            <div class="tome-track">
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> pdf</div>
-                <div class="tome-doc-title">Zero Bail Analysis</div>
-                <div class="tome-doc-snippet">Recidivism rates for zero-bail defendants across LA County</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> note</div>
-                <div class="tome-doc-title">LLM Risk Aversion</div>
-                <div class="tome-doc-snippet">Models consistently avoid losses at 2.3x the rate of equivalent gains</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> url</div>
-                <div class="tome-doc-title">Transformer Internals</div>
-                <div class="tome-doc-snippet">Attention heads specialize for syntactic vs semantic roles</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> md</div>
-                <div class="tome-doc-title">Prospect Theory Notes</div>
-                <div class="tome-doc-snippet">Kahneman & Tversky 1979 — value function is concave for gains</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> pdf</div>
-                <div class="tome-doc-title">Market Simulation</div>
-                <div class="tome-doc-snippet">Agent-based model of double auction with bounded rationality</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> csv</div>
-                <div class="tome-doc-title">Experiment Results</div>
-                <div class="tome-doc-snippet">1,247 trials across GPT-4, Claude, Gemini on ultimatum game</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> tex</div>
-                <div class="tome-doc-title">Dissertation Ch. 3</div>
-                <div class="tome-doc-snippet">Behavioral convergence in multi-round negotiation protocols</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> py</div>
-                <div class="tome-doc-title">Nash Equilibrium</div>
-                <div class="tome-doc-snippet">Iterative best response solver for n-player games</div>
-              </div>
-              <!-- duplicate for seamless loop -->
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> pdf</div>
-                <div class="tome-doc-title">Zero Bail Analysis</div>
-                <div class="tome-doc-snippet">Recidivism rates for zero-bail defendants across LA County</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> note</div>
-                <div class="tome-doc-title">LLM Risk Aversion</div>
-                <div class="tome-doc-snippet">Models consistently avoid losses at 2.3x the rate of equivalent gains</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> url</div>
-                <div class="tome-doc-title">Transformer Internals</div>
-                <div class="tome-doc-snippet">Attention heads specialize for syntactic vs semantic roles</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> md</div>
-                <div class="tome-doc-title">Prospect Theory Notes</div>
-                <div class="tome-doc-snippet">Kahneman & Tversky 1979 — value function is concave for gains</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> pdf</div>
-                <div class="tome-doc-title">Market Simulation</div>
-                <div class="tome-doc-snippet">Agent-based model of double auction with bounded rationality</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> csv</div>
-                <div class="tome-doc-title">Experiment Results</div>
-                <div class="tome-doc-snippet">1,247 trials across GPT-4, Claude, Gemini on ultimatum game</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> tex</div>
-                <div class="tome-doc-title">Dissertation Ch. 3</div>
-                <div class="tome-doc-snippet">Behavioral convergence in multi-round negotiation protocols</div>
-              </div>
-              <div class="tome-doc">
-                <div class="tome-doc-icon"><span class="dot"></span> py</div>
-                <div class="tome-doc-title">Nash Equilibrium</div>
-                <div class="tome-doc-snippet">Iterative best response solver for n-player games</div>
-              </div>
-            </div>
-            <div class="tome-search-bar"><span id="tomeQuery"></span><span class="tome-cursor"></span></div>
-          </div>
-          <div style="padding: 0 24px 24px;">
-            <div class="product-status status-soon"><span class="dot"></span> Coming Soon</div>
-            <h3>Tome</h3>
-            <p>Everything you know, queryable. Drop in papers, notes, bookmarks — Tome maps connections you didn't see and answers questions across your entire knowledge base.</p>
-            <div class="tech-tags">
-              <span>fastapi</span>
-              <span>rag</span>
-              <span>embeddings</span>
-              <span>knowledge graph</span>
-            </div>
-            <a href="https://tome.applesauce.chat" class="btn-secondary" style="margin-top: 12px;">Try Tome</a>
+            <a href="https://graze.applesauce.chat" class="btn-secondary" style="margin-top: 12px;">Try Graze</a>
           </div>
         </div>
 
@@ -1219,6 +1281,116 @@
           </div>
         </div>
       </div>
+
+      <!-- Products In Depth -->
+      <div class="products-detail reveal">
+        <div class="data-label">The Platform</div>
+        <h2 class="section-title">What we've built</h2>
+
+        <!-- Sell -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Sell</h3>
+            <span class="product-badge live">Live</span>
+          </div>
+          <p>
+            The fastest way to turn a photo into a listing. Snap a picture of anything you want to sell, and Sell identifies it, writes the title and description, pulls real-time eBay sold comps, estimates shipping costs via Pirate Ship, and gives you a data-backed price — all in seconds.
+          </p>
+          <p>
+            Built for resellers who source at thrift stores, estate sales, and garage sales. <strong>Source Mode</strong> gives you a quick buy/pass signal right at the shelf — no need to research on your phone. Once you're ready to list, post directly to eBay and Facebook Marketplace without leaving the app.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">GPT-5.1 vision identification</span>
+            <span class="product-feature">Real-time eBay sold comps</span>
+            <span class="product-feature">Pirate Ship shipping estimates</span>
+            <span class="product-feature">One-click eBay & FB posting</span>
+            <span class="product-feature">Source Mode for thrift store scouting</span>
+            <span class="product-feature">PriceCharting & CamelCamelCamel data</span>
+            <span class="product-feature">Image deduplication (skip re-analysis)</span>
+            <span class="product-feature">Shareable listing pages</span>
+          </div>
+          <a href="https://sell.applesauce.chat" class="btn-secondary">Try Sell</a>
+          <a href="https://sell.applesauce.chat/about" class="btn-secondary" style="margin-left: 8px;">Learn more</a>
+        </div>
+
+        <!-- Pickl -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Pickl</h3>
+            <span class="product-badge live">Live</span>
+          </div>
+          <p>
+            Point your camera at any food or cosmetics label and get an instant safety report. Pickl reads every ingredient, cross-references it against databases of 56 flagged food additives, 82 cosmetic ingredients of concern, and 50+ allergen keywords, then gives you a clear safety score.
+          </p>
+          <p>
+            No more squinting at labels or Googling ingredients one by one. Pickl uses GPT-5.1 vision to extract text from the messiest labels — curved bottles, tiny print, multiple languages — and maps each ingredient against Open Food Facts and curated safety databases. You get a breakdown of what's fine, what's worth knowing about, and what to watch out for.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Photo-to-ingredient extraction</span>
+            <span class="product-feature">56 flagged food additives database</span>
+            <span class="product-feature">82 cosmetic ingredients of concern</span>
+            <span class="product-feature">Allergen detection (50+ keywords)</span>
+            <span class="product-feature">Open Food Facts API integration</span>
+            <span class="product-feature">Weighted safety scoring</span>
+            <span class="product-feature">Scan history & ingredient cache</span>
+            <span class="product-feature">5 free scans per day</span>
+          </div>
+          <a href="https://pickl.applesauce.chat" class="btn-secondary">Try Pickl</a>
+          <a href="https://pickl.applesauce.chat/about" class="btn-secondary" style="margin-left: 8px;">Learn more</a>
+        </div>
+
+        <!-- Tome -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Tome</h3>
+            <span class="product-badge soon">Coming Soon</span>
+          </div>
+          <p>
+            A collectible card game where every card starts as a photo. Take a picture of anything — your cat, a sunset, a weird rock — and Tome turns it into a playable card with stats, an element, and a rarity tier. Then battle other players' cards in Card Clash.
+          </p>
+          <p>
+            Each card gets assigned one of eight elements (Fire, Water, Earth, Air, Light, Shadow, Electric, Nature) and a rarity from Common to Mythic. Cards have attack, defense, and speed stats generated from the image itself. Collect cards, fuse duplicates to power them up, and climb the leaderboard.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Photo-to-card generation</span>
+            <span class="product-feature">8 elemental types</span>
+            <span class="product-feature">6 rarity tiers (Common to Mythic)</span>
+            <span class="product-feature">Card Clash PvP battles</span>
+            <span class="product-feature">Card fusion system</span>
+            <span class="product-feature">AI-generated card art & lore</span>
+            <span class="product-feature">Collection & deck building</span>
+            <span class="product-feature">Global leaderboard</span>
+          </div>
+          <a href="https://tome.applesauce.chat" class="btn-secondary">Explore Tome</a>
+          <a href="https://tome.applesauce.chat/about" class="btn-secondary" style="margin-left: 8px;">Learn more</a>
+        </div>
+
+        <!-- Open Source -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Open Source</h3>
+            <span class="product-badge live">136+ repos</span>
+          </div>
+          <p>
+            Everything we build rests on a foundation of open-source work spanning 14 years. Computer vision pipelines, blockchain IoT systems, behavioral game theory experiments, market simulation engines, causal inference toolkits, and more — all public on GitHub.
+          </p>
+          <p>
+            Research areas include LLM behavioral alignment (how AI models reason about risk and make decisions), econometric modeling, and applied machine learning. Published work from Claremont Graduate University covers game theory, AI decision-making under uncertainty, and zero-bail policy analysis.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Computer vision & image processing</span>
+            <span class="product-feature">Blockchain IoT research</span>
+            <span class="product-feature">Behavioral game theory</span>
+            <span class="product-feature">Market simulation engines</span>
+            <span class="product-feature">LLM alignment research</span>
+            <span class="product-feature">Econometric modeling</span>
+            <span class="product-feature">Causal inference tools</span>
+            <span class="product-feature">PyTorch & ML pipelines</span>
+          </div>
+          <a href="https://github.com/tsangares" class="btn-secondary">Browse on GitHub</a>
+          <a href="https://gradstudent.me" class="btn-secondary" style="margin-left: 8px;">Academic work</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1247,8 +1419,8 @@
       <div class="footer-col">
         <h4>Products</h4>
         <a href="https://sell.applesauce.chat">Sell</a>
-        <a href="https://pickl.applesauce.chat">Pickl</a>
         <a href="https://tome.applesauce.chat">Tome</a>
+        <a href="https://pickl.applesauce.chat">Pickl</a>
         <a href="https://github.com/tsangares">Open Source</a>
       </div>
       <div class="footer-col">
@@ -1359,29 +1531,6 @@
           card.style.transform = '';
         });
       });
-    }
-
-    // Tome search typing
-    const tomeEl = document.getElementById('tomeQuery');
-    if (tomeEl) {
-      const queries = ['what did I highlight about prospect theory?', 'connections between risk + LLMs', 'find my notes on Kahneman 1979', 'how does loss aversion relate to RLHF?'];
-      let qi = 0, ci = 0, deleting = false;
-      function tomeType() {
-        const q = queries[qi];
-        if (!deleting) {
-          tomeEl.textContent = q.substring(0, ++ci);
-          if (ci >= q.length) { setTimeout(() => { deleting = true; tomeType(); }, 2000); return; }
-          setTimeout(tomeType, 50 + Math.random() * 40);
-        } else {
-          tomeEl.textContent = q.substring(0, --ci);
-          if (ci <= 0) { deleting = false; qi = (qi + 1) % queries.length; setTimeout(tomeType, 500); return; }
-          setTimeout(tomeType, 25);
-        }
-      }
-      const tomeObs = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) { tomeType(); tomeObs.disconnect(); }
-      }, { threshold: 0.3 });
-      tomeObs.observe(tomeEl.closest('.tome-showcase'));
     }
 
     // Terminal typing
