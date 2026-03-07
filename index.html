@@ -1490,6 +1490,54 @@
           </div>
         </div>
 
+        <!-- Compress — browser video compression -->
+        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
+          <div class="card-shine"></div>
+          <div class="compress-showcase" id="compressShowcase">
+            <div class="compress-ring-wrap">
+              <svg viewBox="0 0 64 64">
+                <defs>
+                  <linearGradient id="compressGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#ec4899"/>
+                  </linearGradient>
+                </defs>
+                <circle class="compress-ring-bg" cx="32" cy="32" r="30"/>
+                <circle class="compress-ring-fill" cx="32" cy="32" r="30"/>
+              </svg>
+              <div class="compress-ring-label">
+                <span class="compress-ring-pct">73%</span>
+                <span class="compress-ring-sub">smaller</span>
+              </div>
+            </div>
+            <div class="compress-stats">
+              <div class="compress-stat-row" style="transition-delay:0.2s">
+                <span class="compress-stat-label">before</span>
+                <div class="compress-stat-bar"><div class="compress-stat-fill original" style="--fill:100%"></div></div>
+                <span class="compress-stat-val">248 MB</span>
+              </div>
+              <div class="compress-stat-row" style="transition-delay:0.5s">
+                <span class="compress-stat-label">after</span>
+                <div class="compress-stat-bar"><div class="compress-stat-fill compressed" style="--fill:27%"></div></div>
+                <span class="compress-stat-val">67 MB</span>
+              </div>
+              <div class="compress-arrow" style="transition-delay:1s">&#10003; 181 MB saved</div>
+            </div>
+          </div>
+          <div style="padding: 0 24px 24px;">
+            <div class="product-status status-live"><span class="dot"></span> Live</div>
+            <h3>Compress</h3>
+            <p>Shrink any video right in your browser. FFmpeg runs locally via WebAssembly — nothing leaves your device. Pick a quality preset, watch the progress ring fill, and download. No uploads, no accounts, no tracking.</p>
+            <div class="tech-tags">
+              <span>ffmpeg.wasm</span>
+              <span>h.264</span>
+              <span>pwa</span>
+              <span>offline</span>
+            </div>
+            <a href="https://compress.applesauce.chat" class="btn-primary" style="margin-top: 12px;">Compress a Video &rarr;</a>
+          </div>
+        </div>
+
         <!-- Tome — collectible card game -->
         <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
           <div class="card-shine"></div>
@@ -1613,54 +1661,6 @@
               <span>allergen profiles</span>
             </div>
             <a href="https://graze.applesauce.chat" class="btn-primary" style="margin-top: 12px;">Scan a Label &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Compress — browser video compression -->
-        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
-          <div class="card-shine"></div>
-          <div class="compress-showcase" id="compressShowcase">
-            <div class="compress-ring-wrap">
-              <svg viewBox="0 0 64 64">
-                <defs>
-                  <linearGradient id="compressGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#f97316"/>
-                    <stop offset="100%" stop-color="#ec4899"/>
-                  </linearGradient>
-                </defs>
-                <circle class="compress-ring-bg" cx="32" cy="32" r="30"/>
-                <circle class="compress-ring-fill" cx="32" cy="32" r="30"/>
-              </svg>
-              <div class="compress-ring-label">
-                <span class="compress-ring-pct">73%</span>
-                <span class="compress-ring-sub">smaller</span>
-              </div>
-            </div>
-            <div class="compress-stats">
-              <div class="compress-stat-row" style="transition-delay:0.2s">
-                <span class="compress-stat-label">before</span>
-                <div class="compress-stat-bar"><div class="compress-stat-fill original" style="--fill:100%"></div></div>
-                <span class="compress-stat-val">248 MB</span>
-              </div>
-              <div class="compress-stat-row" style="transition-delay:0.5s">
-                <span class="compress-stat-label">after</span>
-                <div class="compress-stat-bar"><div class="compress-stat-fill compressed" style="--fill:27%"></div></div>
-                <span class="compress-stat-val">67 MB</span>
-              </div>
-              <div class="compress-arrow" style="transition-delay:1s">&#10003; 181 MB saved</div>
-            </div>
-          </div>
-          <div style="padding: 0 24px 24px;">
-            <div class="product-status status-live"><span class="dot"></span> Live</div>
-            <h3>Compress</h3>
-            <p>Shrink any video right in your browser. FFmpeg runs locally via WebAssembly — nothing leaves your device. Pick a quality preset, watch the progress ring fill, and download. No uploads, no accounts, no tracking.</p>
-            <div class="tech-tags">
-              <span>ffmpeg.wasm</span>
-              <span>h.264</span>
-              <span>pwa</span>
-              <span>offline</span>
-            </div>
-            <a href="https://compress.applesauce.chat" class="btn-primary" style="margin-top: 12px;">Compress a Video &rarr;</a>
           </div>
         </div>
 
@@ -1834,6 +1834,32 @@
           <a href="https://three.applesauce.chat" class="btn-primary">Launch Simulator &rarr;</a>
         </div>
 
+        <!-- Compress -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Compress</h3>
+            <span class="product-badge live">Live</span>
+          </div>
+          <p>
+            A privacy-first video compression tool that runs entirely in your browser. Select a video, pick a quality preset, and FFmpeg compiled to WebAssembly does the rest — no file ever leaves your device. The ~30 MB engine downloads once and caches for offline use.
+          </p>
+          <p>
+            Supports H.264 encoding with high, medium, and low quality presets, plus a target-size mode for hitting specific file size limits. Real-time progress tracking, detailed codec stats, and a sample-based test mode that estimates output size before committing to a full encode. Works offline as a PWA.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Browser-native FFmpeg (WebAssembly)</span>
+            <span class="product-feature">H.264/libx264 encoding</span>
+            <span class="product-feature">High/Medium/Low quality presets</span>
+            <span class="product-feature">Target file size mode</span>
+            <span class="product-feature">Sample-based size estimation</span>
+            <span class="product-feature">Real-time progress & ETA</span>
+            <span class="product-feature">Offline PWA support</span>
+            <span class="product-feature">Zero tracking, zero uploads</span>
+          </div>
+          <a href="https://compress.applesauce.chat" class="btn-primary">Compress a Video &rarr;</a>
+          <a href="https://github.com/Tsangares/compress" class="btn-secondary" style="margin-left: 8px;">Source code</a>
+        </div>
+
         <!-- Tome -->
         <div class="product-detail-card">
           <div class="product-detail-header">
@@ -1883,32 +1909,6 @@
             <span class="product-feature">5 free scans per day</span>
           </div>
           <a href="https://graze.applesauce.chat" class="btn-primary">Scan a Label &rarr;</a>
-        </div>
-
-        <!-- Compress -->
-        <div class="product-detail-card">
-          <div class="product-detail-header">
-            <h3>Compress</h3>
-            <span class="product-badge live">Live</span>
-          </div>
-          <p>
-            A privacy-first video compression tool that runs entirely in your browser. Select a video, pick a quality preset, and FFmpeg compiled to WebAssembly does the rest — no file ever leaves your device. The ~30 MB engine downloads once and caches for offline use.
-          </p>
-          <p>
-            Supports H.264 encoding with high, medium, and low quality presets, plus a target-size mode for hitting specific file size limits. Real-time progress tracking, detailed codec stats, and a sample-based test mode that estimates output size before committing to a full encode. Works offline as a PWA.
-          </p>
-          <div class="product-features">
-            <span class="product-feature">Browser-native FFmpeg (WebAssembly)</span>
-            <span class="product-feature">H.264/libx264 encoding</span>
-            <span class="product-feature">High/Medium/Low quality presets</span>
-            <span class="product-feature">Target file size mode</span>
-            <span class="product-feature">Sample-based size estimation</span>
-            <span class="product-feature">Real-time progress & ETA</span>
-            <span class="product-feature">Offline PWA support</span>
-            <span class="product-feature">Zero tracking, zero uploads</span>
-          </div>
-          <a href="https://compress.applesauce.chat" class="btn-primary">Compress a Video &rarr;</a>
-          <a href="https://github.com/Tsangares/compress" class="btn-secondary" style="margin-left: 8px;">Source code</a>
         </div>
 
         <!-- Applesauce Hub -->
