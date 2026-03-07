@@ -702,6 +702,93 @@
       transform: scale(1);
     }
 
+    /* Hub — applesauce.chat network showcase */
+    .hub-showcase {
+      position: relative;
+      margin: 0 -24px 16px;
+      padding: 28px 24px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--card-border);
+      background: linear-gradient(135deg, rgba(167,139,250,0.05), rgba(110,231,160,0.04), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 170px;
+    }
+    .hub-network {
+      position: relative;
+      width: 240px;
+      height: 140px;
+    }
+    .hub-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      color: #fff;
+      font-weight: 700;
+      z-index: 2;
+      box-shadow: 0 0 20px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hub-showcase.animated .hub-center {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .hub-node {
+      position: absolute;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      white-space: nowrap;
+      z-index: 2;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hub-showcase.animated .hub-node {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .hub-node.active {
+      color: var(--accent-primary);
+      border-color: color-mix(in srgb, var(--accent-primary) 40%, transparent);
+      background: color-mix(in srgb, var(--accent-primary) 8%, var(--card-bg));
+    }
+    .hub-line {
+      position: absolute;
+      top: 50%; left: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent-primary) 40%, transparent), color-mix(in srgb, var(--accent-primary) 10%, transparent));
+      transform-origin: left center;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.6s var(--ease-out);
+    }
+    .hub-showcase.animated .hub-line { opacity: 1; }
+    @keyframes hubPulse {
+      0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--accent-primary) 30%, transparent); }
+      50% { box-shadow: 0 0 30px color-mix(in srgb, var(--accent-primary) 45%, transparent), 0 0 60px color-mix(in srgb, var(--accent-green) 15%, transparent); }
+    }
+    .hub-showcase.animated .hub-center {
+      animation: hubPulse 3s ease-in-out infinite;
+      animation-delay: 0.8s;
+    }
+
     /* Tome — collectible card showcase */
     .tome-showcase {
       position: relative;
@@ -1302,7 +1389,7 @@
       <span class="stat-label">Years Coding</span>
     </div>
     <div class="stat-item">
-      <span class="stat-number" data-target="6">6</span>
+      <span class="stat-number" data-target="7">7</span>
       <span class="stat-label">Products</span>
     </div>
     <div class="stat-item">
@@ -1577,6 +1664,38 @@
           </div>
         </div>
 
+        <!-- Applesauce Hub — this site -->
+        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
+          <div class="card-shine"></div>
+          <div class="hub-showcase" id="hubShowcase">
+            <div class="hub-network">
+              <div class="hub-line" style="width:75px; transform:rotate(-30deg)"></div>
+              <div class="hub-line" style="width:70px; transform:rotate(25deg)"></div>
+              <div class="hub-line" style="width:80px; transform:rotate(155deg)"></div>
+              <div class="hub-line" style="width:72px; transform:rotate(-155deg)"></div>
+              <div class="hub-line" style="width:65px; transform:rotate(85deg)"></div>
+              <div class="hub-center">hub</div>
+              <div class="hub-node active" style="top:2px; right:8px; transition-delay:0.3s">sell</div>
+              <div class="hub-node active" style="bottom:8px; right:0; transition-delay:0.4s">tome</div>
+              <div class="hub-node active" style="bottom:2px; left:4px; transition-delay:0.5s">graze</div>
+              <div class="hub-node active" style="top:8px; left:0; transition-delay:0.6s">compress</div>
+              <div class="hub-node active" style="bottom:-4px; left:50%; margin-left:-16px; transition-delay:0.7s">three</div>
+            </div>
+          </div>
+          <div style="padding: 0 24px 24px;">
+            <div class="product-status status-live"><span class="dot"></span> Live</div>
+            <h3>Applesauce</h3>
+            <p>The hub. This site — a single page that ties every product together. Open-source, static HTML, zero dependencies. The portfolio and launchpad for everything we ship.</p>
+            <div class="tech-tags">
+              <span>static html</span>
+              <span>github pages</span>
+              <span>zero deps</span>
+              <span>open source</span>
+            </div>
+            <a href="https://applesauce.chat" class="btn-primary" style="margin-top: 12px;">Visit Hub &rarr;</a>
+          </div>
+        </div>
+
         <div class="glass-card tilt-card reveal" style="position:relative;">
           <div class="card-shine"></div>
           <div class="product-status status-dev"><span class="dot"></span> In Development</div>
@@ -1792,6 +1911,32 @@
           <a href="https://github.com/Tsangares/compress" class="btn-secondary" style="margin-left: 8px;">Source code</a>
         </div>
 
+        <!-- Applesauce Hub -->
+        <div class="product-detail-card">
+          <div class="product-detail-header">
+            <h3>Applesauce</h3>
+            <span class="product-badge live">Live</span>
+          </div>
+          <p>
+            The central hub for every Applesauce product. A single static page — no frameworks, no build step, no dependencies — that showcases every tool, links to every demo, and tells the story of the platform. You're looking at it right now.
+          </p>
+          <p>
+            Built as pure HTML, CSS, and vanilla JavaScript. Hosted on GitHub Pages with a custom domain. Dual dark/warm theming, scroll-triggered animations, 3D card tilt effects, and responsive design — all in one self-contained file. Open-source on GitHub.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Single-file static site</span>
+            <span class="product-feature">Zero dependencies</span>
+            <span class="product-feature">GitHub Pages hosting</span>
+            <span class="product-feature">Dark & warm themes</span>
+            <span class="product-feature">Scroll-triggered animations</span>
+            <span class="product-feature">3D card tilt effects</span>
+            <span class="product-feature">Responsive mobile-first</span>
+            <span class="product-feature">Open source</span>
+          </div>
+          <a href="https://applesauce.chat" class="btn-primary">Visit Hub &rarr;</a>
+          <a href="https://github.com/Tsangares/applesauce.chat" class="btn-secondary" style="margin-left: 8px;">Source code</a>
+        </div>
+
         <!-- Open Source -->
         <div class="product-detail-card">
           <div class="product-detail-header">
@@ -1987,6 +2132,18 @@
         }
       }, { threshold: 0.3 });
       compressObs.observe(compressShowcase);
+    }
+
+    // Hub showcase animation
+    const hubShowcase = document.getElementById('hubShowcase');
+    if (hubShowcase) {
+      const hubObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          hubShowcase.classList.add('animated');
+          hubObs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      hubObs.observe(hubShowcase);
     }
 
     // Tome holo — randomly activate holo shimmer on cards
