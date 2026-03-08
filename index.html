@@ -265,6 +265,9 @@
       font-style: normal;
       color: var(--accent-primary);
     }
+    .hero-indent {
+      margin-left: 1.5em;
+    }
     /* Word reveal */
     .hero h1 .word {
       display: inline-block;
@@ -1580,7 +1583,7 @@
           <span class="dot"></span>
           Shipping products
         </div>
-        <h1>AI tools<br><span style="margin-left: 1.5em;">that</span><br><span style="margin-left: 1.5em;"><em>just work.</em></span></h1>
+        <h1>AI tools<br><span class="hero-indent">that</span><br><span class="hero-indent"><em>just work.</em></span></h1>
         <p class="hero-desc">
           We build AI-native products that solve real problems — from photo-to-listing for resellers,
           to ingredient safety scanning, collectible card games, and physics simulators. All live, all free to try.
@@ -2315,9 +2318,9 @@
     const heroH1 = document.querySelector('.hero h1');
     if (heroH1) {
       const html = heroH1.innerHTML;
-      heroH1.innerHTML = html.replace(/(<em>.*?<\/em>|<br\s*\/?>|\S+)/g, (match, _p, offset) => {
+      heroH1.innerHTML = html.replace(/(<span[^>]*>.*?<\/span>|<em>.*?<\/em>|<br\s*\/?>|\S+)/g, (match, _p, offset) => {
         if (match.startsWith('<br')) return match;
-        const i = html.substring(0, offset).split(/(<em>.*?<\/em>|<br\s*\/?>|\S+)/g).filter(s => s && !s.startsWith('<br') && s.trim()).length;
+        const i = html.substring(0, offset).split(/(<span[^>]*>.*?<\/span>|<em>.*?<\/em>|<br\s*\/?>|\S+)/g).filter(s => s && !s.startsWith('<br') && s.trim()).length;
         const delay = 0.1 + i * 0.08;
         return `<span class="word" style="animation-delay:${delay}s">${match}</span> `;
       });
