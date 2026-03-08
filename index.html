@@ -364,6 +364,14 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
+    .stat-icon {
+      display: block;
+      margin: 0 auto 4px;
+      width: 20px;
+      height: 20px;
+      color: var(--accent-primary);
+      opacity: 0.6;
+    }
 
     /* ════ Section headers ════ */
     .data-label {
@@ -1059,6 +1067,213 @@
     }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+    /* Bench — game theory matrix */
+    .bench-showcase {
+      position: relative;
+      margin: 0 -24px 16px;
+      padding: 20px 24px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--card-border);
+      background: linear-gradient(135deg, rgba(167,139,250,0.05), rgba(96,165,250,0.04), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+    }
+    .bench-matrix {
+      display: grid;
+      grid-template-columns: 28px 1fr 1fr;
+      grid-template-rows: 28px 1fr 1fr;
+      gap: 3px;
+      width: 180px;
+    }
+    .bench-matrix-corner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      color: var(--text-dim);
+    }
+    .bench-matrix-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .bench-cell {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      gap: 2px;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .bench-showcase.animated .bench-cell { opacity: 1; transform: scale(1); }
+    .bench-cell-cc {
+      background: color-mix(in srgb, var(--accent-green) 15%, var(--card-bg));
+      border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
+      color: var(--accent-green);
+    }
+    .bench-cell-cd {
+      background: color-mix(in srgb, var(--accent-red) 12%, var(--card-bg));
+      border: 1px solid color-mix(in srgb, var(--accent-red) 25%, transparent);
+      color: var(--accent-red);
+    }
+    .bench-cell-dc {
+      background: color-mix(in srgb, var(--accent-gold) 12%, var(--card-bg));
+      border: 1px solid color-mix(in srgb, var(--accent-gold) 25%, transparent);
+      color: var(--accent-gold);
+    }
+    .bench-cell-dd {
+      background: color-mix(in srgb, var(--text-muted) 10%, var(--card-bg));
+      border: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
+      color: var(--text-muted);
+    }
+    .bench-cell-sub {
+      font-size: 0.45rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .bench-agents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-left: 20px;
+    }
+    .bench-agent {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.5s var(--ease-out);
+    }
+    .bench-showcase.animated .bench-agent { opacity: 1; transform: translateX(0); }
+    .bench-agent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .bench-agent-bar {
+      width: 60px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--card-border);
+      overflow: hidden;
+    }
+    .bench-agent-fill {
+      height: 100%;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1.2s var(--ease-out);
+    }
+    .bench-showcase.animated .bench-agent-fill { width: var(--fill); }
+    .bench-agent-name {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      color: var(--text-dim);
+      width: 36px;
+    }
+    @keyframes benchHighlight {
+      0%, 100% { box-shadow: none; }
+      50% { box-shadow: 0 0 12px currentColor; }
+    }
+    .bench-showcase.animated .bench-cell-cc {
+      animation: benchHighlight 4s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    /* Open Source — contribution heatmap */
+    .oss-showcase {
+      position: relative;
+      margin: 0 -24px 16px;
+      padding: 20px 24px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--card-border);
+      background: linear-gradient(135deg, rgba(110,231,160,0.04), rgba(167,139,250,0.03), transparent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      gap: 8px;
+    }
+    .oss-heatmap {
+      display: grid;
+      grid-template-columns: repeat(26, 1fr);
+      grid-template-rows: repeat(7, 1fr);
+      gap: 2px;
+      width: 100%;
+      max-width: 260px;
+    }
+    .oss-cell {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--accent-green) var(--intensity, 0%), var(--card-border));
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s var(--ease-out);
+    }
+    .oss-showcase.animated .oss-cell {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .oss-legend {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.45rem;
+      color: var(--text-dim);
+      opacity: 0;
+      transition: opacity 0.5s var(--ease-out) 1.5s;
+    }
+    .oss-showcase.animated .oss-legend { opacity: 1; }
+    .oss-legend-cell {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+
+    /* CTA section enhancement */
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.08;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .cta-orb:nth-child(1) {
+      width: 300px; height: 300px;
+      background: var(--accent-primary);
+      top: -20%; left: 10%;
+      animation-duration: 16s;
+    }
+    .cta-orb:nth-child(2) {
+      width: 200px; height: 200px;
+      background: var(--accent-green);
+      bottom: -15%; right: 15%;
+      animation-duration: 20s;
+      animation-delay: -4s;
+    }
+
     /* ════ About ════ */
     .about-grid {
       display: grid;
@@ -1381,18 +1596,22 @@
   <!-- Stats -->
   <div class="stats-strip reveal" id="statsStrip">
     <div class="stat-item">
+      <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
       <span class="stat-number" data-target="136">136</span>
       <span class="stat-label">Open Source Repos</span>
     </div>
     <div class="stat-item">
+      <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       <span class="stat-number" data-target="14">14</span>
       <span class="stat-label">Years Coding</span>
     </div>
     <div class="stat-item">
+      <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       <span class="stat-number" data-target="7">7</span>
       <span class="stat-label">Products</span>
     </div>
     <div class="stat-item">
+      <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
       <span class="stat-number" data-target="1">1</span>
       <span class="stat-label">PhD</span>
     </div>
@@ -1696,28 +1915,75 @@
           </div>
         </div>
 
-        <div class="glass-card tilt-card reveal" style="position:relative;">
+        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
           <div class="card-shine"></div>
-          <div class="product-status status-dev"><span class="dot"></span> In Development</div>
-          <h3>Bench</h3>
-          <p>Behavioral benchmarking for LLMs. Run game theory, risk, and cognitive bias experiments on any model. Get quantitative behavioral profiles.</p>
-          <div class="tech-tags">
-            <span>python</span>
-            <span>economics</span>
-            <span>llm testing</span>
+          <div class="bench-showcase" id="benchShowcase">
+            <div class="bench-matrix">
+              <div class="bench-matrix-corner"></div>
+              <div class="bench-matrix-label">C</div>
+              <div class="bench-matrix-label">D</div>
+              <div class="bench-matrix-label">C</div>
+              <div class="bench-cell bench-cell-cc" style="transition-delay:0.2s"><span>3, 3</span><span class="bench-cell-sub">cooperate</span></div>
+              <div class="bench-cell bench-cell-cd" style="transition-delay:0.35s"><span>0, 5</span><span class="bench-cell-sub">exploited</span></div>
+              <div class="bench-matrix-label">D</div>
+              <div class="bench-cell bench-cell-dc" style="transition-delay:0.5s"><span>5, 0</span><span class="bench-cell-sub">tempt</span></div>
+              <div class="bench-cell bench-cell-dd" style="transition-delay:0.65s"><span>1, 1</span><span class="bench-cell-sub">defect</span></div>
+            </div>
+            <div class="bench-agents">
+              <div class="bench-agent" style="transition-delay:0.4s">
+                <div class="bench-agent-dot" style="background:var(--accent-primary)"></div>
+                <div class="bench-agent-bar"><div class="bench-agent-fill" style="--fill:82%; background:var(--accent-primary)"></div></div>
+                <span class="bench-agent-name">GPT-4</span>
+              </div>
+              <div class="bench-agent" style="transition-delay:0.55s">
+                <div class="bench-agent-dot" style="background:var(--accent-green)"></div>
+                <div class="bench-agent-bar"><div class="bench-agent-fill" style="--fill:68%; background:var(--accent-green)"></div></div>
+                <span class="bench-agent-name">Claude</span>
+              </div>
+              <div class="bench-agent" style="transition-delay:0.7s">
+                <div class="bench-agent-dot" style="background:var(--accent-gold)"></div>
+                <div class="bench-agent-bar"><div class="bench-agent-fill" style="--fill:45%; background:var(--accent-gold)"></div></div>
+                <span class="bench-agent-name">Llama</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 0 24px 24px;">
+            <div class="product-status status-dev"><span class="dot"></span> In Development</div>
+            <h3>Bench</h3>
+            <p>Behavioral benchmarking for LLMs. Run game theory, risk, and cognitive bias experiments on any model. Get quantitative behavioral profiles — cooperation rates, risk aversion, loss sensitivity.</p>
+            <div class="tech-tags">
+              <span>python</span>
+              <span>economics</span>
+              <span>llm testing</span>
+            </div>
           </div>
         </div>
 
-        <div class="glass-card tilt-card reveal" style="position:relative;">
+        <div class="glass-card tilt-card reveal" style="position:relative; overflow:hidden;">
           <div class="card-shine"></div>
-          <div class="product-status status-live"><span class="dot"></span> Live</div>
-          <h3>Open Source</h3>
-          <p>136+ repos on GitHub. Computer vision, blockchain IoT, market simulations, and everything built along the way.</p>
-          <div class="tech-tags">
-            <span>python</span>
-            <span>rust</span>
-            <span>pytorch</span>
-            <span>github</span>
+          <div class="oss-showcase" id="ossShowcase">
+            <div class="oss-heatmap" id="ossHeatmap"></div>
+            <div class="oss-legend">
+              <span>less</span>
+              <div class="oss-legend-cell" style="background:var(--card-border)"></div>
+              <div class="oss-legend-cell" style="background:color-mix(in srgb, var(--accent-green) 25%, var(--card-border))"></div>
+              <div class="oss-legend-cell" style="background:color-mix(in srgb, var(--accent-green) 50%, var(--card-border))"></div>
+              <div class="oss-legend-cell" style="background:color-mix(in srgb, var(--accent-green) 75%, var(--card-border))"></div>
+              <div class="oss-legend-cell" style="background:var(--accent-green)"></div>
+              <span>more</span>
+            </div>
+          </div>
+          <div style="padding: 0 24px 24px;">
+            <div class="product-status status-live"><span class="dot"></span> Live</div>
+            <h3>Open Source</h3>
+            <p>136+ repos on GitHub. Computer vision, blockchain IoT, market simulations, and everything built along the way.</p>
+            <div class="tech-tags">
+              <span>python</span>
+              <span>rust</span>
+              <span>pytorch</span>
+              <span>github</span>
+            </div>
+            <a href="https://github.com/tsangares" class="btn-primary" style="margin-top: 12px;">Browse Repos &rarr;</a>
           </div>
         </div>
       </div>
@@ -1968,6 +2234,8 @@
 
   <!-- CTA -->
   <section id="contact" class="cta-section">
+    <div class="cta-orb"></div>
+    <div class="cta-orb"></div>
     <div class="container reveal">
       <h2>Let's build <em>something.</em></h2>
       <p>Got an idea? Want to collaborate? We're always building.</p>
@@ -2144,6 +2412,49 @@
         }
       }, { threshold: 0.3 });
       hubObs.observe(hubShowcase);
+    }
+
+    // Bench showcase animation
+    const benchShowcase = document.getElementById('benchShowcase');
+    if (benchShowcase) {
+      const benchObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          benchShowcase.classList.add('animated');
+          benchObs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      benchObs.observe(benchShowcase);
+    }
+
+    // Open Source heatmap — generate cells with random intensities
+    const ossHeatmap = document.getElementById('ossHeatmap');
+    const ossShowcase = document.getElementById('ossShowcase');
+    if (ossHeatmap && ossShowcase) {
+      // Seed pattern: more activity in recent weeks (right side)
+      for (let col = 0; col < 26; col++) {
+        for (let row = 0; row < 7; row++) {
+          const cell = document.createElement('div');
+          cell.className = 'oss-cell';
+          // Higher intensity toward the right (recent), with randomness
+          const recency = col / 25;
+          const rand = Math.random();
+          let intensity = 0;
+          if (rand < 0.3 + recency * 0.3) {
+            intensity = Math.floor(Math.random() * 100 * (0.3 + recency * 0.7));
+          }
+          cell.style.setProperty('--intensity', Math.min(intensity, 100) + '%');
+          // Stagger animation delay based on column
+          cell.style.transitionDelay = (col * 0.03 + Math.random() * 0.05) + 's';
+          ossHeatmap.appendChild(cell);
+        }
+      }
+      const ossObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          ossShowcase.classList.add('animated');
+          ossObs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      ossObs.observe(ossShowcase);
     }
 
     // Tome holo — randomly activate holo shimmer on cards
